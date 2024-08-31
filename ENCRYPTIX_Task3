@@ -1,0 +1,71 @@
+//Task3
+package Encryptix;
+import java.util.Scanner;
+class BankAccount {
+private double balance;
+public BankAccount(double initialBalance) {
+balance = initialBalance=1000;
+}
+public void deposit(double amount) {
+balance = getBalance()+ amount;
+System.out.println("Deposit successful. Current balance: ₹" + balance);
+}
+public void withdraw(double amount) {
+try {
+if (balance< amount)
+throw new Exception("Insufficient balance to withdraw ₹" + amount);
+balance = balance-amount;
+System.out.println("Withdrawal successful. Current balance: ₹" + balance);
+} catch (Exception e) {
+System.out.println("Error: " + e.getMessage());
+System.out.println("Withdrawal failed. Insufficient balance.");
+}
+}
+public double getBalance() {
+return balance;
+}
+}
+public class ATM_Interface {
+public static void main(String[] args) {
+Scanner scanner = new Scanner(System.in);
+double initialBalance=1000;
+BankAccount account = new BankAccount(initialBalance);
+int ch;
+do {
+System.out.print("\n\tWelcome to the ATM");
+System.out.print("\n1. Check Balance");
+System.out.print("\n2. Deposit");
+System.out.print("\n3. Withdraw");
+System.out.print("\n4. Exit");
+System.out.print("\nPlease choose an option: ");
+ch=scanner.nextInt();
+if(ch==1)
+{
+System.out.println("Initial balance: ₹" + account.getBalance());
+}
+else if(ch==2)
+{
+System.out.print("Enter amount to deposit: ");
+
+double depositAmount = scanner.nextDouble();
+account.deposit(depositAmount);
+}
+else if(ch==3)
+{
+System.out.print("Enter amount to withdraw: ");
+double withdrawAmount = scanner.nextDouble();
+account.withdraw(withdrawAmount);
+}
+else if(ch==4)
+{
+	System.out.print("Thank you for choosing our ATM!!!");
+	}
+else
+{
+System.out.print("Invalid Please try Again");
+}
+}while(ch!=4);
+}
+
+
+}
